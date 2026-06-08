@@ -7,7 +7,8 @@
 - 生成 `720×240` banner，不做 2x 放大。
 - 固定三层结构：背景层、左侧 copy 层、右侧产品 UI 层。
 - 背景、左侧 copy 色、组件卡片投影色跟随 Figma `背景 & copy color` 的 canonical 配色。
-- 右侧 UI 必须基于 Figma `组件` page 或本地 Cards 源资产，不能临时手画产品 UI。
+- PNG 草稿阶段右侧 UI 必须使用 image 2.0 生成。
+- Figma `组件` page 或本地 Cards 源资产用于约束产品真实性、结构、padding、字阶和内容槽位，不能临时手画产品 UI。
 - 支持先输出 PNG 草稿，确认后写入 Figma 三层可编辑稿。
 
 ## 安装
@@ -42,4 +43,3 @@ https://www.figma.com/design/IFJ2aHOABZi2WsLJEEkm0A/for-AI-banner
 - `背景 & copy color`
 - `组件`
 - `模版`
-
