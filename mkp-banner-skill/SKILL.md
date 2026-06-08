@@ -187,8 +187,12 @@ manifest 必须记录：
 左侧营销 copy：
 
 - 中文使用本地品牌字体：`/Users/bytedance/Desktop/飞书 brand /方正兰亭黑 Pro GB18030/`
-- 字号、字重、行高、字间距参考 Figma 相同角色。
-- 参考：`font-size 30px`、`line-height 46px`、`font-weight 600`、`letter-spacing 0`。
+- 默认 `720×240` 时，必须按 Figma `案例` page 的固定 copy 规格，不要自动缩放字号。
+- 左侧 copy frame：`x=40`、`y=50`、`width≈315`、`height=140`。
+- Title：`font-size 30px`、`line-height 46px`、`font-weight 600`、`letter-spacing 0`，单行优先。
+- Subtitle：`font-size 14px`、`line-height 22px`、`font-weight 600`、`letter-spacing 0`，可按语义换行，但不要改写用户文案。
+- CTA：`font-size 14px`、`line-height 22px`、`font-weight 600`，位于 copy frame 底部节奏，参考 `y=138`。
+- 禁止为了避让右侧 UI 或填满容器而把左侧 copy 放大/缩小；应调整右侧 UI 安全区、文案换行或构图。
 
 右侧产品 UI：
 
