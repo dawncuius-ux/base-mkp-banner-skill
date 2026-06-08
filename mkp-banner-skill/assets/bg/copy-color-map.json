@@ -1,0 +1,282 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "figmaFileKey": "IFJ2aHOABZi2WsLJEEkm0A",
+    "pageName": "背景 & copy color",
+    "pageNodeId": "56:1021",
+    "figmaUrl": "https://www.figma.com/design/IFJ2aHOABZi2WsLJEEkm0A/for-AI-banner?node-id=56-1021"
+  },
+  "roleDefaults": {
+    "title": {
+      "opacity": 0.9
+    },
+    "subtitle": {
+      "opacity": 0.6
+    },
+    "cta": {
+      "opacity": 1
+    },
+    "logoText": {
+      "opacity": 0.6
+    }
+  },
+  "backgrounds": {
+    "BG01": {
+      "sourceNodeId": "56:1023",
+      "copyGroupNodeId": "96:305",
+      "tone": "cool-blue",
+      "baseFill": "#F0F4FF",
+      "copyColor": "#0A2957",
+      "copy": {
+        "title": {
+          "color": "#0A2957",
+          "opacity": 0.9
+        },
+        "subtitle": {
+          "color": "#0A2957",
+          "opacity": 0.6
+        },
+        "cta": {
+          "color": "#0A2957",
+          "opacity": 1
+        },
+        "logoText": {
+          "color": "#000000",
+          "opacity": 0.6
+        }
+      },
+      "cardShadow": {
+        "main": {
+          "color": "#0A2957",
+          "opacity": 0.14,
+          "offsetX": 0,
+          "offsetY": 9,
+          "blur": 18
+        },
+        "support": {
+          "color": "#0A2957",
+          "opacity": 0.1,
+          "offsetX": 0,
+          "offsetY": 6,
+          "blur": 14
+        },
+        "foreground": {
+          "color": "#0A2957",
+          "opacity": 0.08,
+          "offsetX": 0,
+          "offsetY": 5,
+          "blur": 12
+        }
+      },
+      "backgroundFills": [
+        {
+          "type": "SOLID",
+          "color": "#F0F4FF",
+          "opacity": 1
+        },
+        {
+          "type": "IMAGE",
+          "name": "Prism featured card image 1"
+        }
+      ]
+    },
+    "BG02": {
+      "sourceNodeId": "96:355",
+      "copyGroupNodeId": "96:357",
+      "tone": "cool-lavender-blue",
+      "baseFill": "#F0F4FF",
+      "copyColor": "#2C2E56",
+      "copy": {
+        "title": {
+          "color": "#2C2E56",
+          "opacity": 0.9
+        },
+        "subtitle": {
+          "color": "#2C2E56",
+          "opacity": 0.6
+        },
+        "cta": {
+          "color": "#2C2E56",
+          "opacity": 1
+        },
+        "logoText": {
+          "color": "#000000",
+          "opacity": 0.6
+        }
+      },
+      "cardShadow": {
+        "main": {
+          "color": "#2C2E56",
+          "opacity": 0.14,
+          "offsetX": 0,
+          "offsetY": 9,
+          "blur": 18
+        },
+        "support": {
+          "color": "#2C2E56",
+          "opacity": 0.1,
+          "offsetX": 0,
+          "offsetY": 6,
+          "blur": 14
+        },
+        "foreground": {
+          "color": "#2C2E56",
+          "opacity": 0.08,
+          "offsetX": 0,
+          "offsetY": 5,
+          "blur": 12
+        }
+      },
+      "backgroundFills": [
+        {
+          "type": "SOLID",
+          "color": "#F0F4FF",
+          "opacity": 1
+        },
+        {
+          "type": "IMAGE",
+          "name": "天空色渐变，清新自然，流动 1"
+        }
+      ]
+    },
+    "BG03": {
+      "sourceNodeId": "96:368",
+      "copyGroupNodeId": "96:374",
+      "tone": "fresh-green-cyan",
+      "baseFill": "#BFF2CE",
+      "copyColor": "#0A5746",
+      "copy": {
+        "title": {
+          "color": "#0A5746",
+          "opacity": 0.9
+        },
+        "subtitle": {
+          "color": "#0A5746",
+          "opacity": 0.6
+        },
+        "cta": {
+          "color": "#0A5746",
+          "opacity": 1
+        },
+        "logoText": {
+          "color": "#000000",
+          "opacity": 0.6
+        }
+      },
+      "cardShadow": {
+        "main": {
+          "color": "#0A5746",
+          "opacity": 0.14,
+          "offsetX": 0,
+          "offsetY": 9,
+          "blur": 18
+        },
+        "support": {
+          "color": "#0A5746",
+          "opacity": 0.1,
+          "offsetX": 0,
+          "offsetY": 6,
+          "blur": 14
+        },
+        "foreground": {
+          "color": "#0A5746",
+          "opacity": 0.08,
+          "offsetX": 0,
+          "offsetY": 5,
+          "blur": 12
+        }
+      },
+      "backgroundFills": [
+        {
+          "type": "SOLID",
+          "color": "#BFF2CE",
+          "opacity": 1
+        },
+        {
+          "type": "SOLID",
+          "color": "#94DFFF",
+          "opacity": 0.6
+        },
+        {
+          "type": "SOLID",
+          "color": "#FFFFFF",
+          "opacity": 0.76
+        },
+        {
+          "type": "SOLID",
+          "color": "#7ED8FF",
+          "opacity": 0.27
+        }
+      ]
+    },
+    "BG04": {
+      "sourceNodeId": "96:385",
+      "copyGroupNodeId": "96:391",
+      "tone": "warm-orange-cream",
+      "baseFill": "#F2DDBF",
+      "copyColor": "#57280A",
+      "copy": {
+        "title": {
+          "color": "#57280A",
+          "opacity": 0.9
+        },
+        "subtitle": {
+          "color": "#57280A",
+          "opacity": 0.6
+        },
+        "cta": {
+          "color": "#57280A",
+          "opacity": 1
+        },
+        "logoText": {
+          "color": "#000000",
+          "opacity": 0.6
+        }
+      },
+      "cardShadow": {
+        "main": {
+          "color": "#57280A",
+          "opacity": 0.14,
+          "offsetX": 0,
+          "offsetY": 9,
+          "blur": 18
+        },
+        "support": {
+          "color": "#57280A",
+          "opacity": 0.1,
+          "offsetX": 0,
+          "offsetY": 6,
+          "blur": 14
+        },
+        "foreground": {
+          "color": "#57280A",
+          "opacity": 0.08,
+          "offsetX": 0,
+          "offsetY": 5,
+          "blur": 12
+        }
+      },
+      "backgroundFills": [
+        {
+          "type": "SOLID",
+          "color": "#F2DDBF",
+          "opacity": 1
+        },
+        {
+          "type": "SOLID",
+          "color": "#FFC094",
+          "opacity": 0.6
+        },
+        {
+          "type": "SOLID",
+          "color": "#FFFAF3",
+          "opacity": 0.76
+        },
+        {
+          "type": "IMAGE",
+          "name": "image 1"
+        }
+      ]
+    }
+  }
+}
