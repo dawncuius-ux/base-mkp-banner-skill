@@ -1,42 +1,33 @@
 ---
 name: mkp-banner
-description: 生成 MKP 产品/模版宣传 banner。固定三层结构：背景层、左侧 copy 层、右侧 UI 层。PNG 草稿阶段右侧 UI 必须使用 image 2.0 生成，Figma 组件/本地资产只作为真实性参考；最终 Figma 稿再重建为可编辑 UI。默认尺寸 720x240，不做 2x 放大。
+description: Base MKP Banner_V1。生成 MKP 产品/模版宣传 banner。固定三层结构：背景层、左侧 copy 层、右侧 UI 层。PNG 草稿阶段右侧 UI 必须用 image 2.0 生成；Figma 组件/本地资产只作为真实性、结构、padding、字阶和内容槽位约束。最终 Figma 稿按确认效果克隆源组件并重建为可编辑 UI。默认尺寸 720x240，不做 2x 放大。
 ---
 
-# MKP Banner Skill
+# Base MKP Banner_V1
 
-## 1. 默认目标
+## 1. 目标
 
-生成 `720×240` MKP banner，默认不做 2x 放大。只有用户明确要求时才使用旧尺寸 `1440×500`。
+默认生成 `720×240` MKP banner，不做 2x 放大。只有用户明确要求时才使用 `1440×500`。
 
-输出必须分为三层：
+最终画面必须是三层：
 
-- `00-background`：背景层，来自 Figma `背景 & copy color` page 或本地背景资产。
+- `00-background`：背景层。
 - `20-copy.zh-CN`：左侧营销 copy 层，使用用户输入文案。
-- `10-ui.zh-CN`：右侧产品 UI 层；PNG 草稿阶段必须使用 image 2.0 生成，最终 Figma 稿再按确认效果重建为可编辑 UI。
+- `10-ui.zh-CN`：右侧产品 UI 层；PNG 草稿阶段由 image 2.0 生成，最终 Figma 稿重建为可编辑节点。
 
-PNG 草稿阶段，右侧 UI 层必须使用 image 2.0 生成。Figma `组件` page / 本地组件资产只作为产品真实性、结构、padding、字阶、内容槽位的参考约束。禁止用 HTML/SVG/Sharp 手工重建右侧 UI 来替代 image 2.0。最终 Figma 稿必须保持三层结构，并按确认后的 image 2.0 视觉效果重建为可编辑 UI。
+## 2. 输入与素材
 
-## 2. 输入
-
-用户应提供：
+用户通常提供：
 
 - `title`
 - `subtitle`
 - `CTA`
 - 产品 / 模版 brief
+- 可选组件，例如 `grid`、`Pie`、`Progress`、`Metrics`、`Kanban`
 
-可选输入：
+缺少左侧 copy 时先询问；如果用户要求继续，可以临时拟定，并在 manifest 标记待确认。
 
-- 指定背景
-- 指定布局
-- 指定组件，例如 `CRM表`、`Progress`、`Metrics`、`Kanban（项目管理）`
-
-如果左侧 copy 缺失，先询问；如果用户要求直接继续，可以临时拟定，并在 manifest 标记为待确认。
-
-## 3. Figma 与本地来源
-
-主文件：
+主 Figma 文件：
 
 - 文件名：`for AI banner`
 - File key：`IFJ2aHOABZi2WsLJEEkm0A`
@@ -44,9 +35,10 @@ PNG 草稿阶段，右侧 UI 层必须使用 image 2.0 生成。Figma `组件` p
 
 优先读取：
 
-- `背景 & copy color` page：背景、左侧 copy 色值、组件卡片投影色。
+- `背景 & copy color` page：背景、copy 色值、卡片投影色。
 - `组件` page：右侧产品 UI 组件来源。
 - `模版` page：右侧 UI 组合布局参考。
+- `案例` page：720×240 左侧 copy 字号、行高、位置。
 
 本地 fallback：
 
@@ -54,88 +46,81 @@ PNG 草稿阶段，右侧 UI 层必须使用 image 2.0 生成。Figma `组件` p
 - 背景 / copy / 投影配色：`assets/bg/copy-color-map.json`
 - 组件资产：`assets/Cards/Large/*`、`assets/Cards/Small/*`
 
-如果 Figma MCP 不可用，可以使用本地组件资产作为 image 2.0 的参考图和真实性约束，但不能用本地资产/HTML/SVG/Sharp 直接替代 image 2.0 生成右侧 UI。
+## 3. 标准流程
 
-## 4. 生成流程
-
-1. 读取用户 copy 和 brief。
-2. 从 Figma `背景 & copy color` 或本地 `copy-color-map.json` 选择背景、copy 色值和卡片投影参数。
-3. 从 brief 提取场景、实体、用户指定组件和 UI 证据。
-4. 将每个业务模版映射到具体 Figma 源组件或本地源资产。
-5. 丢弃或澄清无法溯源的业务模版。
+1. 读取用户 copy、brief、指定组件。
+2. 选择背景，并读取对应 copy 色值与卡片投影色温。
+3. 从 brief 提取场景、实体、UI 证据和业务模版。
+4. 为每个展示组件绑定 Figma 源组件或本地源资产；无法溯源则丢弃或澄清。
+5. 读取并记录源组件截图 / node id，先写出组件契约：固定结构、允许改写槽位、禁止新增元素。
 6. 参考 `模版` page 选择右侧 UI 构图。
 7. 只改源组件已有内容槽位，保留产品结构、padding、字阶、图表位置和功能逻辑。
-8. 将背景、copy、右侧 UI 构图和组件参考图组织成 image 2.0 prompt，生成右侧 UI 视觉图或完整 PNG 草稿。
-9. 输出 PNG 草稿；用户确认后写入 Figma 三层 frame，并重建右侧 UI 为可编辑节点。
-10. 输出 manifest，记录尺寸、copy、背景、布局、组件来源、image 2.0 使用情况、copy/投影配色来源、字体审计、fallback 和导出路径。
+8. 用 image 2.0 生成 PNG 草稿；Figma 组件/本地资产仅作为参考图和约束。
+9. 用户确认后写入 Figma 三层 frame，并通过克隆源组件把右侧 UI 重建为可编辑节点。
+10. 输出 manifest，记录尺寸、copy、背景、组件来源、image 2.0、字体审计、fallback 和导出路径。
 
-## 5. P0 红线：PNG 草稿必须使用 image 2.0
+## 4. P0 红线
 
-PNG 草稿阶段，右侧 UI 图必须由 image 2.0 生成。Figma `组件` page / 本地 `assets/Cards` 只负责提供参考和约束：
+### 4.1 PNG 草稿必须使用 image 2.0
 
-- 产品真实性：用了哪个真实组件。
-- 结构：卡片、表格、图表、看板等组件逻辑。
-- 规范：padding、字号、字重、行高、圆角、阴影、图表位置。
-- 内容槽位：标题、字段、行列、数字、状态、标签。
+右侧 UI 图必须由 image 2.0 生成。禁止用 HTML/SVG/Sharp/Canvas 手工重建右侧 UI 并当作 PNG 草稿交付。
 
-禁止：
+允许代码处理：
 
-- 用 HTML/SVG/Sharp/Canvas 手工重建右侧 UI 并当作 PNG 草稿交付。
-- 直接把本地组件资产拼贴成最终右侧 UI，绕过 image 2.0。
-- 让 image 2.0 自由发挥产品界面，忽略 Figma 组件真实性约束。
+- 背景层与左侧 copy 合成。
+- 裁切、压缩、manifest、QA 标注。
+- 用户确认后，在 Figma 中重建可编辑 UI。
 
-允许：
+### 4.2 组件必须可溯源
 
-- 用 Figma 截图或本地组件资产作为 image 2.0 参考图。
-- 用代码/脚本合成背景层与左侧 copy 层。
-- 用代码/脚本做尺寸裁切、压缩、manifest、QA 标注。
-- 用户确认 PNG 后，在最终 Figma 稿中按 image 2.0 效果重建可编辑 UI。
+右侧每个可见组件 / 卡片必须来自 Figma `组件` page，或来自本地 `assets/Cards` 中由 Figma 组件导出的源资产。
 
-manifest 必须记录：
+生成前必须完成：
 
-- `imageGeneration.engine`: `image 2.0`
-- `imageGeneration.referenceComponents`
-- `imageGeneration.promptSummary`
-- `imageGeneration.outputPath`
+- 找到组件的 Figma node id 或本地源资产路径。
+- 查看源组件截图，而不是凭组件名主观想象。
+- 写出该组件的固定结构、可改内容槽位、禁止新增元素。
+- 把组件来源写入 manifest 的 `componentSources`。
 
-缺少 image 2.0 记录时，PNG 草稿视为无效。
-
-## 6. P0 红线：组件必须可溯源
-
-右侧 UI 中每一个可见组件 / 卡片都必须基于 Figma `组件` page 中的源组件，或基于本地 `assets/Cards` 中由 Figma 组件导出的源资产。
+如果没有完成以上任一项，禁止进入 image 2.0 生成。
 
 禁止：
 
-- 临时手画一个看起来像产品 UI 的新卡片。
-- 只借用“表格语法”“卡片风格”“Base 风格”就自行创造组件。
-- 用户给出业务模版名时，直接把业务模版画成新界面。
-- manifest 只写“使用 Grid/table grammar”，但没有具体 Figma node 或本地资产来源。
+- 临时手画“看起来像产品 UI”的新卡片。
+- 只借用表格语法、Base 风格、卡片风格就自行创造界面。
+- 新增源组件没有的控件、标题 icon、右上角胶囊、filter button、工具栏、徽标。
+- 把源组件结构换成另一种 UI 模式。
 
 允许：
 
-- 复制 / 读取 Figma 源组件后，只改标题、字段、行数据、状态、数字等内容槽位。
-- 在源组件已有产品逻辑内增删行列、增宽 / 增高容器。
-- 同一个源组件可复制多次，用不同内容表示多个业务模版。
-- Figma MCP 不可用时，使用本地 `assets/Cards/...` 导出图作为源。
+- 替换标题、字段、行数据、状态、数字等已有内容槽位。
+- 在源组件语法允许时增删行列，并增大容器。
+- 同一源组件复制多次，用不同内容表达多个业务模版。
 
-manifest 中每个展示组件必须记录：
+### 4.3 源组件契约优先
 
-- `businessTemplate`
-- `sourceComponent`
-- `sourceNodeId` 或 `sourceAsset`
-- `allowedChanges`
+组件名不是设计指令，源截图才是设计指令。image 2.0 prompt 必须描述“复用哪个源组件的结构”，而不是描述“画一个某某看板 / 表格 / 卡片”。
 
-缺少来源记录时，结果视为无效草稿，不能交付。
+组件契约格式：
 
-## 7. 背景、Copy 与投影配色
+- `source`：组件名、node id 或本地资产路径。
+- `fixedStructure`：必须保留的布局、控件、图表、线框、圆角、阴影、padding、字阶。
+- `editableSlots`：可替换的标题、列名、行数据、状态、指标值等。
+- `forbidden`：源组件中不存在的 icon、按钮、筛选器、标签、工具栏、交互逻辑。
 
-背景层决定整张 banner 的色温。左侧营销 copy 和右侧组件卡片投影都必须跟随所选背景的 canonical 配色。
+违反任一 `forbidden` 项即视为 P0。
+
+## 5. 视觉与版式
+
+### 5.1 背景、copy 与投影
+
+背景决定整张 banner 色温。左侧 copy 和组件卡片投影必须跟随所选背景的 canonical 配色。
 
 配色优先级：
 
-1. Figma 可用时，读取 `背景 & copy color` page。
-2. Figma 不可用时，读取 `assets/bg/copy-color-map.json`。
-3. 只有没有 canonical 记录的新背景，才使用色温判断兜底。
+1. 读取 Figma `背景 & copy color` page。
+2. Figma 不可用时读取 `assets/bg/copy-color-map.json`。
+3. 新背景才允许按色温兜底判断。
 
 当前 canonical copy 配色：
 
@@ -144,32 +129,16 @@ manifest 中每个展示组件必须记录：
 - `BG03`：copy `#0A5746`，title 90%，subtitle 60%，CTA 100%。
 - `BG04`：copy `#57280A`，title 90%，subtitle 60%，CTA 100%。
 
-组件卡片投影：
+卡片投影读取 `cardShadow.main`、`cardShadow.support`、`cardShadow.foreground`，色相跟随背景色温；右侧产品 UI 内部色彩保留源组件原始色。
 
-- 主卡、支持卡、前景小卡分别读取 `copy-color-map.json` 的 `cardShadow.main`、`cardShadow.support`、`cardShadow.foreground`。
-- 投影色相必须跟随所选背景的 `copyColor / cardShadow`。
-- 允许调整 opacity、blur、offset 来适配层级。
-- 禁止暖色背景使用冷黑灰、蓝灰、绿灰投影。
-- 禁止冷色背景使用暖棕橙投影。
-
-右侧产品 UI 内部色彩保留源组件原始色，不强行随背景改色。
-
-manifest 必须记录：
-
-- `backgroundTone`
-- `copyPrimary`
-- `copyOpacity`
-- `cardShadow`
-- `copyColorSource`
-
-## 8. 版式与密度
+### 5.2 布局密度
 
 优先参考 Figma `模版` page。
 
 常用布局：
 
 - `主卡聚焦`：一个主组件 + 一个中/小支持组件。
-- `堆叠主卡`：两到三张卡叠放，但只能有一个焦点。
+- `堆叠主卡`：两到三张卡叠放，但只有一个视觉焦点。
 - `平铺轻卡`：多张轻量卡片，适合低密度内容。
 - `路径流转`：节点 / 小卡表达流程。
 
@@ -177,42 +146,53 @@ manifest 必须记录：
 
 - 每张 banner 只能有一个视觉焦点。
 - 右侧 UI 不能遮挡、触碰或干扰左侧 copy。
-- `610px` 是右侧 UI 默认 guardrail，不是绝对限制；只要不影响左侧 copy，右侧 UI 可以更宽。
+- `610px` 是默认 guardrail，不是绝对限制；只要不影响左侧 copy，右侧 UI 可以更宽。
 - 默认一个主卡 + 一到两个支持卡。
 - 支持卡可轻微叠放或旋转，但不能遮挡主组件必须保留的结构节奏。
-- 避免多个高密度大卡同时完整出现。
+- 旋转卡片时，先正面复刻内部结构，确认 padding、间距、文案容量正确，再整体旋转卡片。
 
-## 9. 字体规则
+## 6. 字体
 
 左侧营销 copy：
 
-- 中文使用本地品牌字体：`/Users/bytedance/Desktop/飞书 brand /方正兰亭黑 Pro GB18030/`
-- 默认 `720×240` 时，必须按 Figma `案例` page 的固定 copy 规格，不要自动缩放字号。
-- 左侧 copy frame：`x=40`、`y=50`、`width≈315`、`height=140`。
-- Title：`font-size 30px`、`line-height 46px`、`font-weight 600`、`letter-spacing 0`，单行优先。
-- Subtitle：`font-size 14px`、`line-height 22px`、`font-weight 600`、`letter-spacing 0`，可按语义换行，但不要改写用户文案。
+- 中文默认使用 `Noto Sans SC`。
+- Figma 输出前必须用 `figma.listAvailableFontsAsync()` 确认精确 `family/style`。
+- 默认 `font-weight 600` 用 `Noto Sans SC Bold` 承接；当前 Figma 可用字重为 `Black`、`Bold`、`DemiLight`、`Light`、`Medium`、`Regular`、`Thin`，没有 `SemiBold`。
+- 如果用户明确要求方正兰亭黑，只有 Figma 能成功 `loadFontAsync` 精确 family/style 时才可使用；不要用乱码 family 或未知中文字体冒充。
+- 禁止静默 fallback 到 `Inter`。如果 `Noto Sans SC` 不可用，必须在回复和 manifest 中说明，并询问是否允许替代字体。
+
+720×240 固定 copy 规格：
+
+- copy frame：`x=40`、`y=50`、`width≈315`、`height=140`。
+- Title：`font-size 30px`、`line-height 46px`、`font-weight 600`、`letter-spacing 0`。
+- Subtitle：`font-size 14px`、`line-height 22px`、`font-weight 600`、`letter-spacing 0`；可按语义换行，不改写用户文案。
 - CTA：`font-size 14px`、`line-height 22px`、`font-weight 600`，位于 copy frame 底部节奏，参考 `y=138`。
-- 禁止为了避让右侧 UI 或填满容器而把左侧 copy 放大/缩小；应调整右侧 UI 安全区、文案换行或构图。
+- 禁止为了避让 UI 或填满容器而缩放左侧 copy 字号；应调整右侧 UI 安全区、换行或构图。
 
 右侧产品 UI：
 
-- 不能继承左侧品牌字体。
-- 必须保留源组件文字角色。
-- 中文 UI 标题 / 表头 / 标签：`PingFang SC Medium/Regular`。
+- 不能继承左侧营销字体。
+- 中文 UI 标题 / 表头 / 标签：优先保留源组件字体角色，通常为 `PingFang SC Medium/Regular`。
 - 关键大数字：`Roboto Bold`。
 - 辅助数字 / 金额 / 图例数值：`SF Pro Text Regular` 或源组件指定字体。
 - 涨跌值：`SF Pro Text Medium` 或源组件指定字重。
 
-Figma 输出前必须审计 `10-ui.zh-CN` 中所有 text node 的 `fontName`、`fontSize`、`lineHeight`。如果 Figma MCP 环境无法加载 `PingFang SC` 或方正字体，不要静默 fallback 到 Inter；必须在 manifest 和回复中说明。
+Figma 输出前审计 `20-copy.zh-CN` 和 `10-ui.zh-CN` 中所有 text node 的 `fontName`、`fontSize`、`lineHeight`。
 
-## 10. Brief 解析
+Figma 字体审计必须检查可加载性：
+
+- 不能只看 `listAvailableFontsAsync()`；写入或改写文字前必须对目标 `family/style` 执行 `loadFontAsync()`。
+- 如果源组件包含 `PingFang SC`，但当前 Figma MCP 不能加载对应字重，未改写的源节点可保留，改写过的中文 UI 文案使用 `Noto Sans SC Medium/Regular` 作为明确 fallback。
+- fallback 必须写入 manifest 和回复；禁止静默改成 `Inter`。
+
+## 7. Brief 解析
 
 brief 只决定右侧 UI 的组件组合和内容改写，不主动改写用户输入的左侧 copy。
 
-解析时提取：
+提取：
 
-- 场景：销售、项目、制造、运营、AI、HR、财务等。
-- 实体：客户、任务、负责人、订单、项目、指标、候选人等。
+- 场景：销售、项目、制造、运营、AI、HR、财务、零售等。
+- 实体：客户、任务、负责人、订单、项目、指标、门店、库存、会员等。
 - UI 证据：表格、看板、KPI、Progress、Metrics、排行榜、流程等。
 - 用户指定组件。
 
@@ -222,32 +202,16 @@ brief 只决定右侧 UI 的组件组合和内容改写，不主动改写用户�
 - 括号内是内容改写方向。
 - 不要因为另一个组件也能表达就替换用户指定组件族。
 
-## 11. 组件保真
+## 8. 组件保真与容量
 
 选中的源组件是产品界面契约，不是风格参考图。
 
-允许：
-
-- 替换已有数据 / 文本槽位。
-- 根据 brief 改写业务内容。
-- 在源组件语法允许时新增行 / 列，并增大容器。
-- 调整组件整体缩放、位置、叠放关系。
-
-禁止：
-
-- 新增源组件不存在的控件、图标、筛选器、按钮、徽标、标题 icon、右上角胶囊、工具栏。
-- 把源组件结构替换成另一种 UI 模式。
-- 把内容标签改造成产品控件。
-- 为了塞内容而压缩 padding、行高、字号、字间距。
-
-改写组件前必须检查：
+改写前必须检查：
 
 - 源 Figma node 或本地资产。
 - 源宽高和最终缩放比例。
-- 内容 padding。
-- 文本 baseline、字号、字重、行高、字间距。
+- padding、行距、字号、字重、行高、字间距。
 - 图表 / icon 的位置和尺寸。
-- 内容容量。
 - 容器、pill、chip、badge、label、数据槽位是否能装下文字。
 
 P1 错误：
@@ -268,74 +232,52 @@ P1 修复顺序：
 
 不要通过缩小源组件字号、压缩行高或减少源 padding 解决。
 
-## 12. 组件特殊规则
+## 9. 组件特殊规则
 
-`Progress`：
+- `Progress`：优先读取 Figma node `1:6172`；只改文案；圆弧保持正圆；百分比使用 `Roboto Bold`；缩小时整体缩放。
+- `Metrics`：保留标题、大号指标值、灰色对比标签、绿色变化值、小图表；主数值使用 `Roboto Bold`；对比标签和涨跌值不能合并成一行。
+- `todo`：保留标题、check icon 列、行距和底部 padding；不要把 placeholder/skeleton 挤成真实事项。
+- `Kanban/Grid`：保留真实 outline、列结构、表格线；可改行列内容或新增同语法行列；不要增加 filter button、标题 icon、右侧胶囊控件。
+- `S-Column`：只改标题、轴标签、柱值；保持 120×120 源比例、柱宽、柱圆角、底部标签节奏；缩放时整体缩放。
+- `M-Kanban`：必须保留源组件的大白卡、顶部标题、头像/负责人胶囊行、三列线框卡片结构；没有标题 icon、右上按钮、筛选器或工具栏；可把销售签约内容改为客服工单 / FAQ / 售后事项，但不能增加源组件没有的产品逻辑。
+- `S-NPS`：保留标题、半圆仪表盘、中心分数、刻度与色段；不要改成饼图、环图或折线图；缩放时整体缩放，禁止拉伸圆弧。
 
-- 优先读取 Figma node，例如 `1:6172`。
-- 只改文案，不改图形位置、大小、间距。
-- 圆弧保持正圆，不拉伸。
-- 百分比使用 `Roboto Bold`。
-- 如果需要更小，缩放整个组件；不要重排内部结构。
+## 10. Figma 输出与 QA
 
-`Metrics`：
+Figma 输出：
 
-- 保留标题、大号指标值、灰色对比标签、绿色变化值、小图表。
-- 主数值使用 `Roboto Bold`。
-- 涨跌值使用 `SF Pro Text Medium`。
-- 对比标签和涨跌值不能合并成一行。
-
-`todo`：
-
-- 保留标题、check icon 列、行距和底部 padding。
-- 源组件是两条真实事项 + 一个 placeholder/skeleton 时，不要把 placeholder 挤成第三条真实事项。
-
-`Kanban/Grid`：
-
-- 内部真实 outline、列结构、表格线必须保留。
-- 可以改行列内容，可以新增同语法行 / 列并增宽容器。
-- 不要增加源组件没有的 filter button、标题 icon、右侧胶囊控件。
-
-`S-Column`：
-
-- 使用 Figma `S-Column` 源组件时，只改标题、轴标签、柱值。
-- 保持 120×120 源比例、柱宽、柱圆角、底部标签节奏。
-- 缩放时整体缩放，不单独拉伸柱形或容器。
-
-## 13. Figma 输出要求
-
-Frame：
-
-- 默认 `720×240`。
-- 不做 2x 放大。
-- 三层 frame 均为 `720×240`。
+- Frame 默认 `720×240`，不做 2x 放大。
+- 顶层只能有三层：`00-background`、`20-copy.zh-CN`、`10-ui.zh-CN`；三层 frame 均为 `720×240`。
 - 背景铺满画布。
 - copy 层和 UI 层独立可选中。
+- 右侧 UI 按确认后的 image 2.0 PNG 效果重建为可编辑节点，但必须优先克隆 Figma `组件` page 的源组件 / 源 frame。
+- 克隆后只编辑源组件已有文本、数据、状态等槽位；不要在 Figma 终稿里手画一个相似组件替代源组件。
+- 如果支持卡需要旋转，先在正面状态完成内部文本、padding、间距、容量检查，再整体旋转 clone。
+- 默认保留嵌套 instance；不要为了改文案盲目 detach 嵌套 instance。只有确实需要改内部结构时才 detach，并先确认目标节点仍存在。
+- 允许保留隐藏的 image 2.0 参考底图，但最终交付的右侧 UI 不能只是一张扁平截图。
+- 隐藏 manifest / reference image 必须放进 `00-background` 内或放在 banner frame 外，不能成为第四个顶层 layer。
 
-右侧 UI：
+manifest 至少记录：
 
-- 按用户确认后的 image 2.0 PNG 效果重建。
-- 从源组件复制，或按源节点坐标重建为可编辑节点。
-- 允许使用 image 2.0 PNG 作为重建参考底图，但最终交付时右侧 UI 不能只是一张扁平截图。
+- `imageGeneration.engine`
+- `imageGeneration.referenceComponents`
+- `componentSources`
+- `backgroundTone`
+- `copyPrimary`
+- `cardShadow`
+- `fontAudit`
+- `fallback`
+- `outputPath`
 
-## 14. QA Checklist
+交付前确认：
 
-交付前必须确认：
-
-- 尺寸符合用户要求，默认 `720×240`。
-- 三层结构正确：`00-background`、`20-copy.zh-CN`、`10-ui.zh-CN`。
-- 左侧 copy 与用户输入一致。
-- 左侧 copy 使用所选背景的 canonical 色值和 opacity。
-- 组件卡片投影使用所选背景的 canonical `cardShadow`。
-- PNG 草稿阶段右侧 UI 使用 image 2.0 生成，并在 manifest 中记录。
-- 右侧 UI 不遮挡左侧 copy。
-- 只有一个明确视觉焦点。
-- 右侧每一个 UI 卡片都有 `sourceComponent` + `sourceNodeId/sourceAsset`。
-- 没有新增源组件不存在的控件 / 图标 / 按钮 / 筛选器。
-- padding、行距、字阶、圆角、阴影、图表位置保留源组件节奏。
-- 所有文字 fit，无溢出、裁切、贴边、碰撞。
+- 三层结构正确。
+- 左侧 copy 与用户输入一致，默认 `Noto Sans SC Bold`。
+- copy 色、卡片投影与背景色温一致。
+- PNG 草稿右侧 UI 使用 image 2.0。
+- 每个 UI 卡片都有来源记录。
+- 没有源组件不存在的控件。
+- 没有文字溢出、碰撞、贴边、裁切。
 - chip / pill / badge 能容纳内容。
-- 支持卡不破坏主组件信息阅读。
-- 右侧 UI 字体角色符合源组件；字体不可加载时明确说明。
+- 圆弧、图表、头像不变形。
 - 没有 Figma 选框、水印、设备框、乱码、混合语言或脏透明边。
-- manifest 已记录组件来源、image 2.0 使用情况、copy/投影配色来源、fallback、字体审计和输出路径。

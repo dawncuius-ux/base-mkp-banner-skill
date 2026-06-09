@@ -1,4 +1,4 @@
-# MKP Banner Skill
+# Base MKP Banner_V1
 
 用于生成 MKP 产品 / 模版宣传 banner 的 Codex skill。
 
@@ -27,7 +27,7 @@ cp -R mkp-banner-skill ~/.codex/skills/
 
 ## 关键资产
 
-- Skill：`mkp-banner-skill/SKILL.md`
+- Skill：`mkp-banner-skill/SKILL.md`（skill name 仍为 `mkp-banner`，可继续用 `$mkp-banner` 调用）
 - 背景图：`mkp-banner-skill/assets/bg/`
 - 背景 / copy / 投影配色：`mkp-banner-skill/assets/bg/copy-color-map.json`
 - 产品 UI 组件图：`mkp-banner-skill/assets/Cards/`

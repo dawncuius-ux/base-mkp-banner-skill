@@ -1,7 +1,7 @@
 # Prompt 模板
 
 ```text
-请使用 mkp-banner skill 生成一张 MKP 模版/产品宣传 banner。
+请使用 Base MKP Banner_V1（$mkp-banner）生成一张 MKP 模版/产品宣传 banner。
 
 尺寸：720×240
 输出：先生成 PNG 草稿
@@ -36,7 +36,7 @@ CTA：
 ## 示例
 
 ```text
-请使用 mkp-banner skill 生成一张 MKP 模版/产品宣传 banner。
+请使用 Base MKP Banner_V1（$mkp-banner）生成一张 MKP 模版/产品宣传 banner。
 
 尺寸：720×240
 输出：先生成 PNG 草稿
