@@ -25,6 +25,9 @@ cp -R mkp-banner-skill ~/.codex/skills/
 
 参考 [PROMPT_TEMPLATE.md](./PROMPT_TEMPLATE.md)。
 
+新手使用介绍：  
+[Base MKP Banner_V1 使用介绍](./docs/base-mkp-banner-v1-usage.md)
+
 ## 关键资产
 
 - Skill：`mkp-banner-skill/SKILL.md`（skill name 仍为 `mkp-banner`，可继续用 `$mkp-banner` 调用）
