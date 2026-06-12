@@ -4,7 +4,9 @@
     "figmaFileKey": "IFJ2aHOABZi2WsLJEEkm0A",
     "pageName": "背景 & copy color",
     "pageNodeId": "56:1021",
-    "figmaUrl": "https://www.figma.com/design/IFJ2aHOABZi2WsLJEEkm0A/for-AI-banner?node-id=56-1021"
+    "figmaUrl": "https://www.figma.com/design/IFJ2aHOABZi2WsLJEEkm0A/for-AI-banner?node-id=56-1021",
+    "organicGradientWiki": "https://bytedance.larkoffice.com/wiki/J9HLwlyS2i2JyVkudYPcsEcBnXf",
+    "assetRule": "BG01-BG04 are fixed local organic-gradient assets. Reuse directly; do not regenerate backgrounds during banner creation."
   },
   "roleDefaults": {
     "title": {
@@ -24,8 +26,8 @@
     "BG01": {
       "sourceNodeId": "56:1023",
       "copyGroupNodeId": "96:305",
-      "tone": "cool-blue",
-      "baseFill": "#F0F4FF",
+      "tone": "organic-cool-blue",
+      "baseFill": "#6AB8F3",
       "copyColor": "#0A2957",
       "copy": {
         "title": {
@@ -70,21 +72,17 @@
       },
       "backgroundFills": [
         {
-          "type": "SOLID",
-          "color": "#F0F4FF",
-          "opacity": 1
-        },
-        {
           "type": "IMAGE",
-          "name": "Prism featured card image 1"
+          "name": "organic-gradient-bg01-blue",
+          "asset": "assets/bg/BG01.png"
         }
       ]
     },
     "BG02": {
       "sourceNodeId": "96:355",
       "copyGroupNodeId": "96:357",
-      "tone": "cool-lavender-blue",
-      "baseFill": "#F0F4FF",
+      "tone": "organic-lavender-blue",
+      "baseFill": "#B6A6F3",
       "copyColor": "#2C2E56",
       "copy": {
         "title": {
@@ -129,21 +127,17 @@
       },
       "backgroundFills": [
         {
-          "type": "SOLID",
-          "color": "#F0F4FF",
-          "opacity": 1
-        },
-        {
           "type": "IMAGE",
-          "name": "天空色渐变，清新自然，流动 1"
+          "name": "organic-gradient-bg02-lavender",
+          "asset": "assets/bg/BG02.png"
         }
       ]
     },
     "BG03": {
       "sourceNodeId": "96:368",
       "copyGroupNodeId": "96:374",
-      "tone": "fresh-green-cyan",
-      "baseFill": "#BFF2CE",
+      "tone": "organic-green-cyan",
+      "baseFill": "#9BEF85",
       "copyColor": "#0A5746",
       "copy": {
         "title": {
@@ -188,32 +182,17 @@
       },
       "backgroundFills": [
         {
-          "type": "SOLID",
-          "color": "#BFF2CE",
-          "opacity": 1
-        },
-        {
-          "type": "SOLID",
-          "color": "#94DFFF",
-          "opacity": 0.6
-        },
-        {
-          "type": "SOLID",
-          "color": "#FFFFFF",
-          "opacity": 0.76
-        },
-        {
-          "type": "SOLID",
-          "color": "#7ED8FF",
-          "opacity": 0.27
+          "type": "IMAGE",
+          "name": "organic-gradient-bg03-green",
+          "asset": "assets/bg/BG03.png"
         }
       ]
     },
     "BG04": {
       "sourceNodeId": "96:385",
       "copyGroupNodeId": "96:391",
-      "tone": "warm-orange-cream",
-      "baseFill": "#F2DDBF",
+      "tone": "organic-warm-orange",
+      "baseFill": "#F4A536",
       "copyColor": "#57280A",
       "copy": {
         "title": {
@@ -258,23 +237,9 @@
       },
       "backgroundFills": [
         {
-          "type": "SOLID",
-          "color": "#F2DDBF",
-          "opacity": 1
-        },
-        {
-          "type": "SOLID",
-          "color": "#FFC094",
-          "opacity": 0.6
-        },
-        {
-          "type": "SOLID",
-          "color": "#FFFAF3",
-          "opacity": 0.76
-        },
-        {
           "type": "IMAGE",
-          "name": "image 1"
+          "name": "organic-gradient-bg04-warm",
+          "asset": "assets/bg/BG04.png"
         }
       ]
     }
