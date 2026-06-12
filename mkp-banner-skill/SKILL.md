@@ -42,14 +42,15 @@ description: Base MKP Banner_V1。生成 MKP 产品/模版宣传 banner。固定
 
 本地 fallback：
 
-- 背景：`assets/bg/BG01.png`、`BG02.png`、`BG03.png`、`BG04.png`。这些是从飞书 wiki 有机渐变库沉淀下来的固定 720×240 资产，直接调用，不重新生成。
+- 背景主库：`有机渐变/*.png`。背景层必须从该文件夹选择已有渐变图，按 banner 画布尺寸居中裁切/缩放铺满，不重新生成渐变。
+- 背景兼容 fallback：`assets/bg/BG01.png`、`BG02.png`、`BG03.png`、`BG04.png`。仅当 `有机渐变/` 不可用时调用。
 - 背景 / copy / 投影配色：`assets/bg/copy-color-map.json`
 - 组件资产：`assets/Cards/Large/*`、`assets/Cards/Small/*`
 
 ## 3. 标准流程
 
 1. 读取用户 copy、brief、指定组件。
-2. 从 `assets/bg/BG01-BG04.png` 选择固定有机渐变背景，并读取对应 copy 色值与卡片投影色温。
+2. 从 `有机渐变/` 选择最匹配 brief 情绪和行业色温的背景图，按画布尺寸居中裁切/缩放铺满，并读取对应 copy 色值与卡片投影色温；缺少精确映射时按背景主色温从 `copy-color-map.json` 选择最近的 BG 配色。
 3. 从 brief 提取场景、实体、UI 证据和业务模版。
 4. 为每个展示组件绑定 Figma 源组件或本地源资产；无法溯源则丢弃或澄清。
 5. 读取并记录源组件截图 / node id，先写出组件契约：固定结构、允许改写槽位、禁止新增元素。
@@ -116,18 +117,18 @@ description: Base MKP Banner_V1。生成 MKP 产品/模版宣传 banner。固定
 
 背景决定整张 banner 色温。左侧 copy 和组件卡片投影必须跟随所选背景的 canonical 配色。
 
-默认背景使用本地固定资产：
+默认背景使用本地有机渐变主库：
 
-- `BG01`：蓝色有机渐变。
-- `BG02`：紫蓝有机渐变。
-- `BG03`：绿色有机渐变。
-- `BG04`：暖橙有机渐变。
+- 路径：`有机渐变/*.png`
+- 用法：选择已有图片，居中裁切/缩放到 `720×240` 或用户指定画布尺寸，作为 `00-background` 铺满。
+- 禁止：常规 banner 生成时用 image 2.0、CSS、SVG 或临时渐变重新生成背景。
+- 兼容：只有 `有机渐变/` 不可用时，才回退到 `assets/bg/BG01-BG04.png`。
 
-这些背景已从飞书 wiki 有机渐变库下载并裁成 `720×240`，生成 banner 时直接铺满画布。禁止在常规生成流程里用 image 2.0、CSS、SVG 或临时渐变重新生成背景；只有需要新增背景资产时，才先下载/裁切/沉淀到 `assets/bg/` 和 `copy-color-map.json`，再调用。
+新增背景必须先沉淀到 `有机渐变/`，再由 skill 调用；不要在 banner 任务中一次性生成并直接使用未入库背景。
 
 配色优先级：
 
-1. 读取 `assets/bg/copy-color-map.json` 中所选 BG 的 copy 色值、透明度和卡片投影。
+1. 根据 `有机渐变/` 所选图片的主色温，在 `assets/bg/copy-color-map.json` 中选择最近的 copy 色值、透明度和卡片投影。
 2. 需要对齐 Figma 时，再读取 Figma `背景 & copy color` page 校验。
 3. 只有新增背景才允许按色温兜底判断。
 
